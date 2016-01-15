@@ -1,0 +1,21 @@
+services:
+  plugin.manager.flag.flagtype:
+    class: Drupal\flag\FlagTypePluginManager
+    arguments: ['@container.namespaces', '@cache.default', '@module_handler']
+  plugin.manager.flag.linktype:
+    class: Drupal\flag\ActionLinkPluginManager
+    arguments: ['@container.namespaces', '@cache.default', '@module_handler']
+  flag:
+    class: Drupal\flag\FlagService
+    arguments: ['@plugin.manager.flag.flagtype', '@event_dispatcher', '@entity.query', '@current_user', '@entity.manager']
+  flag.count:
+    class: Drupal\flag\FlagCountManager
+    arguments: ['@database']
+    tags:
+      - { name: event_subscriber }
+  flag.link_builder:
+    class: Drupal\flag\FlagLinkBuilder
+    arguments: ['@entity.manager', '@flag']
+  flagging:
+    class: Drupal\flag\FlaggingService
+    arguments: ['@entity.query', '@event_dispatcher', '@flag']
