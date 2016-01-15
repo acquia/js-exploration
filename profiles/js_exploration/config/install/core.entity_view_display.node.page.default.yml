@@ -1,0 +1,34 @@
+uuid: cf3bbc5a-ffa3-4b34-9009-09675591c5f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - field.field.node.page.field_comments
+    - node.type.page
+  module:
+    - comment
+    - text
+    - user
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  field_comments:
+    weight: 102
+    label: above
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+  links:
+    weight: 101
+hidden:
+  langcode: true

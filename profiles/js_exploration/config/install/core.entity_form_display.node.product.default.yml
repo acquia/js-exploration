@@ -1,0 +1,52 @@
+uuid: 125b6c66-110d-4900-a008-8b10f2d061d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product.body
+    - field.field.node.product.field_product_feedback
+    - field.field.node.product.field_product_photo
+    - node.type.product
+  module:
+    - comment
+    - image
+    - text
+id: node.product.default
+targetEntityType: node
+bundle: product
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_product_feedback:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+  field_product_photo:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

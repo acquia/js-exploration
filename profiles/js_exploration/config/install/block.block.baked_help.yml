@@ -1,0 +1,20 @@
+uuid: 874f4f1b-dc3f-49dd-8205-5ae2e6a56c86
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - baked
+id: baked_help
+theme: baked
+region: content
+weight: -5
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 1de299a7-6349-4a02-8f00-c6b0bcf491ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+id: comment.bakeoff.uid
+field_name: uid
+entity_type: comment
+bundle: bakeoff
+label: 'User ID'
+description: 'The user ID of the comment author.'
+required: false
+translatable: false
+default_value:
+  -
+    target_id: '0'
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

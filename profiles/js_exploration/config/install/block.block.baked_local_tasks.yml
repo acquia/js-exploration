@@ -1,0 +1,20 @@
+uuid: e1b240ce-3f64-4cd0-9c1d-2970a547a792
+langcode: en
+status: true
+dependencies:
+  theme:
+    - baked
+id: baked_local_tasks
+theme: baked
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

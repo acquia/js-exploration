@@ -1,0 +1,8 @@
+uuid: 67aa9a3f-518c-4d74-a943-67c9b9952353
+langcode: en
+status: true
+dependencies: {  }
+id: bakeoff
+label: 'Product Feedback'
+target_entity_type_id: node
+description: 'An alternate type of comment for products'

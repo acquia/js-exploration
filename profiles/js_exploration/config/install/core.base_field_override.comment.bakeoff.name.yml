@@ -1,0 +1,20 @@
+uuid: 7a28cc42-693d-4e2e-bd57-87a381e201d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+id: comment.bakeoff.name
+field_name: name
+entity_type: comment
+bundle: bakeoff
+label: Name
+description: 'The comment author''s name.'
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+uuid: df1a175a-bbd8-4504-8f00-eab21064be45
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+id: comment.bakeoff.hostname
+field_name: hostname
+entity_type: comment
+bundle: bakeoff
+label: Hostname
+description: 'The comment author''s hostname.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

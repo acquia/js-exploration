@@ -1,0 +1,18 @@
+uuid: 95ff75c0-cf77-45f0-8300-b119a3063f5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+id: comment.bakeoff.subject
+field_name: subject
+entity_type: comment
+bundle: bakeoff
+label: Subject
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

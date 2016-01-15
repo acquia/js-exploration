@@ -1,0 +1,24 @@
+uuid: 48490543-fd9b-4b59-9100-c769a8648aab
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - baked
+id: baked_account_menu
+theme: baked
+region: '-1'
+weight: -1
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

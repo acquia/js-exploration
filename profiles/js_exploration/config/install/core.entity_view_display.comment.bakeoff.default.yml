@@ -1,0 +1,39 @@
+uuid: 98fad659-a6fb-4752-b136-54cd79fe5855
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+    - field.field.comment.bakeoff.comment_body
+    - field.field.comment.bakeoff.field_rate_this
+  module:
+    - options
+    - text
+id: comment.bakeoff.default
+targetEntityType: comment
+bundle: bakeoff
+mode: default
+content:
+  comment_body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_rate_this:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  flag_was_this_helpful_:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  flag_like: true
+  langcode: true

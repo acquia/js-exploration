@@ -1,0 +1,20 @@
+uuid: ac88fab2-599b-4ee7-ae05-5e9ecb552680
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - baked
+id: baked_content
+theme: baked
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

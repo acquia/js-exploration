@@ -1,0 +1,20 @@
+uuid: 01c26ad4-4f76-4821-9900-a69f5793bced
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - baked
+id: baked_messages
+theme: baked
+region: header
+weight: -4
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

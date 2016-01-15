@@ -1,0 +1,31 @@
+uuid: a9a0ba0d-42b7-4d81-9300-c6632103b86c
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+id: was_this_helpful_
+label: 'Was this helpful?'
+bundles:
+  - bakeoff
+entity_type: comment
+enabled: true
+global: false
+weight: -10
+flag_short: 'Yes'
+flag_long: 'Was this helpful?'
+flag_message: ''
+unflag_short: 'No'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:comment'
+link_type: reload
+flagTypeConfig:
+  show_in_links:
+    full: full
+  show_as_field: 1
+  show_on_form: 0
+  show_contextual_link: 0
+  access_author: comment_others
+linkTypeConfig: {  }

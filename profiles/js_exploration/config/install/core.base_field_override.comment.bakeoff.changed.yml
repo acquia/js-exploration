@@ -1,0 +1,18 @@
+uuid: 4b9cf2e3-df2b-4a74-bc0c-1232e9828b66
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+id: comment.bakeoff.changed
+field_name: changed
+entity_type: comment
+bundle: bakeoff
+label: Changed
+description: 'The time that the comment was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

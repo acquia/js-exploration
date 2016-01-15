@@ -1,0 +1,65 @@
+name: JS Exploration
+type: profile
+description: 'Tracking Drupal 8.1.x plus custom theme plus REST bugfixes.'
+version: VERSION
+core: 8.x
+dependencies:
+  # Standard
+  - node
+  - history
+  - block
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - comment
+  - contextual
+  - contact
+  - menu_link_content
+  - datetime
+  - block_content
+  - quickedit
+  - editor
+  - help
+  - image
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - dynamic_page_cache
+  - taxonomy
+  - dblog
+  - search
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - tour
+  - automated_cron
+
+  #
+  # Additions on top of Standard for JS-exploration:
+  #
+
+  # 1. REST.
+  - basic_auth
+  - hal
+  - rest
+  - serialization
+
+  # 2. Localization.
+  - language
+  - locale
+  - config_translation
+  - content_translation
+
+  # 3. Extension via fields.
+  - flag
+
+themes:
+  - baked
+  - bartik
+  - seven

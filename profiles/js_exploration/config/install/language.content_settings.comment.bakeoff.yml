@@ -1,0 +1,16 @@
+uuid: c9e908b1-8e1b-4ad5-b201-1bc190921b2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: comment.bakeoff
+target_entity_type_id: comment
+target_bundle: bakeoff
+default_langcode: site_default
+language_alterable: true

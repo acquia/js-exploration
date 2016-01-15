@@ -1,0 +1,21 @@
+uuid: a3234367-e1dc-40ec-9203-3f84d7e21ba6
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+    - field.storage.comment.field_rate_this
+  module:
+    - options
+id: comment.bakeoff.field_rate_this
+field_name: field_rate_this
+entity_type: comment
+bundle: bakeoff
+label: 'Product rating'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

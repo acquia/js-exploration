@@ -1,0 +1,21 @@
+uuid: c8085d49-6314-441a-b853-831f99a2d5e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.bakeoff
+    - field.storage.comment.comment_body
+  module:
+    - text
+id: comment.bakeoff.comment_body
+field_name: comment_body
+entity_type: comment
+bundle: bakeoff
+label: Comment
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
