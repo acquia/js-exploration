@@ -1,0 +1,95 @@
+.comment {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.comment .field--name-user-picture img {
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+.comment__content {
+  position: relative;
+  display: table-cell;
+  vertical-align: top;
+  width: 100%;
+}
+.comment__content h3 {
+  margin-top: 0;
+  margin-bottom: .5em;
+  font-size: 1.5em;
+}
+.comment .links li {
+  margin-left: 0;
+  margin-right: 1em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.comment__meta p {
+  display: inline-block;
+}
+li.comment-delete a {
+    color: #C31111;
+}
+li.comment-edit a {
+  padding-right: .75em;
+  padding-left: .75em;
+}
+a.permalink {
+    color: #333;
+}
+
+/* Floats the user avatar in the left margin */
+article.profile {
+    float: left;
+    margin-right: 1em;
+}
+
+/* Visual affordance that the comment is being previewed */
+.comment--preview {
+  background: #f5f5f5;
+}
+
+/* Don't show the text format options bar (shouldn't there be a config option for this?) */
+div.filter-wrapper {
+  display: none;
+}
+
+.comment__content nav {
+    margin-top: 1em;
+}
+
+/* Inline the rating radio buttons */
+.form-item-field-rate-this {
+  display: inline-block;
+  margin-right: .5em;
+}
+
+/* Move the language selector to the right */
+div#edit-langcode-wrapper {
+  float: right;
+}
+div#edit-langcode-wrapper .form-item {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+/* hide redundant descriptive text that can't be hidden via field UI */
+div#edit-langcode-wrapper .description {
+  visibility: hidden;
+}
+
+/* make line lengths in forms scannable on larger screens */
+form#comment-form {
+  max-width: 800px;
+}
+
+
+
+/* Add space between inlined footer emelents */
+footer.comment__meta p {
+    margin-right: 1em;
+}
+
+.field--name-subject .form-type-textfield {
+    margin-top: 0;
+}
+

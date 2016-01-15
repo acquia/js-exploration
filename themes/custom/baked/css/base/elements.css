@@ -1,0 +1,127 @@
+/**
+ * @file
+ * Overall specifications for Baked.
+ */
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  word-wrap: break-word;
+  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a,
+a.link,
+a:hover,
+a:active,
+a:focus,
+.link:hover,
+.link:active,
+.link:focus {
+  color: #2288AA;
+  text-decoration: none;
+  border-bottom: 0px;
+}
+ h1, h2, h3, h4, h5, h6 {
+  line-height: 1em;
+  margin: 0 0 .2em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: 800;
+}
+h5 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.6em;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.8em;
+  font-weight: 300;
+}
+h1 {
+  font-size: 2em;
+  font-weight: 100;
+}
+p, i, cite, em, var, address, dfn {
+  margin: 0 0 1em;
+}
+p {
+  max-width: 75ch;
+  hyphens: auto;
+}
+del {
+  text-decoration: line-through;
+}
+blockquote {
+  margin: 0 1em;
+  line-height: 1em;
+  padding: 0.5em 10px;
+}
+blockquote:before {
+  content: "\201C";
+  font-size: 3em;
+  vertical-align: -0.47em;
+}
+blockquote:after {
+  content: "\201D";
+  font-size: 3em;
+  vertical-align: -0.47em;
+}
+blockquote > p:first-child {
+  display: inline;
+}
+.feed-icon {
+  display: block;
+  margin: 25px 0 0 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+ul, ol {
+  margin: 0;
+  padding: 0 0 0.25em 1em; /* LTR */
+}
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  padding: 0 1em 0.25em 0;
+}
+ol ol,
+ul ul {
+  margin: 0;
+  padding: 0 0 0.25em 1em; /* LTR */
+}
+[dir="rtl"] ol ol,
+[dir="rtl"] ul ul {
+  padding: 0 1em 0.25em 0;
+}
+
+input.text-full {
+    border: 1px solid #ccc;
+}
+.region-header {
+  background: #eee;
+}
+.field--name-body {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+/* hack to get around hard-coded h2 */
+.comment-form__title {
+  color: transparent;
+}
+.comment-form__title:before {
+  content: "Product Feedback";
+  color: #333;
+}
+

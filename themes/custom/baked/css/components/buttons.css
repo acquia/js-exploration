@@ -1,0 +1,183 @@
+/**
+ * @file
+ * Structural styles for Baked UI buttons
+ *
+ * Apply these classes to any element (<link>, <button>, <input>, etc.) that
+ * should appear as a button.
+ */
+
+/**
+ * Buttons.
+ *
+ * 1. Enable z-index on buttons.
+ * 2. Normalize 'line-height'; can’t be changed from 'normal' in Firefox 4+.
+ * 3. Allows full range of styling in Webkit and Gecko.
+ * 4. Use px units to ensure button text is centered vertically.
+ * 5. Use rems to avoid the font size cascade of ems, with a px fallback for
+ *    older browsers.
+ * 6. Prevent fat text in WebKit.
+ *
+ * @todo Consider moving box-sizing into base.css under a universal selector.
+ * See https://www.drupal.org/node/2124251
+ *
+ */
+.button,
+.comment-edit {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;  /* 1 */
+  text-align: center;
+  line-height: normal;  /* 2 */
+  cursor: pointer;
+  -webkit-appearance: none;  /* 3 */
+  -moz-appearance: none;  /* 3 */
+  padding: 4px 1.5em;  /* 4 */
+  margin-left: 0; /* LTR */
+  margin-right: 1em; /* LTR */
+  border: 2px solid #39B4E9;
+  border-radius: 20em;
+  background-color: #fff;
+  color: #2288AA;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  font-size: 0.875rem;  /* 5 */
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-font-smoothing: antialiased;  /* 6 */
+}
+.button:hover,
+.button:focus {
+  color: #555;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Prevent focus ring being covered by next siblings. */
+.button:focus {
+  color: #333;
+  z-index: 10;
+  border-color: #3AB2FF;
+}
+.button:active {
+  color: #333;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.button--primary {
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+}
+.button--primary:hover,
+.button--primary:focus {
+  color: #555;
+}
+.button--primary:active {
+  color: #333;
+}
+
+/**
+ * Overrides styling from system.theme.
+ */
+.button-action:before {
+  margin-left: -0.2em; /* LTR */
+  padding-right: 0.2em; /* LTR */
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 16px;
+  -webkit-font-smoothing: auto;
+}
+[dir="rtl"] .button-action:before {
+  margin-right: -0.2em;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0.2em;
+}
+
+/**
+ * 1. Use px units to ensure button text is centered vertically.
+ */
+.no-touch .button--small {
+  font-size: 13px;
+  font-size: 0.813rem;
+  padding: 2px 1em;  /* 1 */
+}
+
+.button:disabled,
+.button:disabled:active,
+.button.is-disabled,
+.button.is-disabled:active {
+  border-color: #DDD;
+  color: #555;
+  font-weight: normal;
+  cursor: default;
+}
+
+/* Link actions. */
+
+/**
+ * Style a clickable/tappable element as a link. Duplicates the base style for
+ * the <a> tag, plus a reset for padding, borders and background.
+ */
+.link {
+  display: inline;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #2288AA;
+  text-decoration: none;
+}
+.link:hover,
+.link:focus {
+  color: #000;
+  text-decoration: underline;
+}
+
+/**
+ * We've temporarily added the danger button here, bit of a harsh reset but we
+ * need it.
+ * @todo replace with link--danger.
+ * See https://www.drupal.org/node/2123731
+ */
+.button--danger {
+  display: inline;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #C72100;
+  text-decoration: underline;
+}
+.button--danger:hover,
+.button--danger:focus,
+.button--danger:active {
+  color: #FF2A00;
+  text-decoration: underline;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: none;
+}
+.button--danger:disabled,
+.button--danger.is-disabled {
+  color: #777;
+  cursor: default;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+/* exceptions */
+#edit-reset {
+  border-color: transparent;
+  background: transparent;
+}
+

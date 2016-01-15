@@ -1,0 +1,10 @@
+global-styling:
+  version: VERSION
+  css:
+    base:
+      css/base/elements.css: {}
+      css/base/layout.css: {}
+    component:
+      css/components/comments.css: {}
+      css/components/buttons.css: {}
+
