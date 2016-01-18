@@ -1,0 +1,108 @@
+<?php
+
+use \Drupal\comment\Entity\Comment;
+use \Drupal\file\Entity\File;
+use \Drupal\node\Entity\Node;
+use \Drupal\user\Entity\User;
+
+/**
+ * @see standard_install()
+ */
+function js_exploration_install() {
+  // First, do everything in standard profile.
+  include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
+  standard_install();
+
+  // Ensure the translation fields are created in the database.
+  \Drupal::service('entity.definition_update_manager')->applyUpdates();
+
+  $upload_file = function($filename) {
+    file_unmanaged_copy(__DIR__ . '/content/' . $filename, 'public://' . $filename);
+    $file = File::create();
+    $file->setFileUri('public://' . $filename);
+    $file->save();
+    return $file;
+  };
+
+  // Default content: user 1 should have a profile picture.
+  $user_profile_picture = $upload_file('s01_1.jpg');
+  $user = User::load(1);
+  $user->user_picture->target_id = $user_profile_picture->id();
+  $user->save();
+
+  // Default content: product with comment.
+  $product_image = $upload_file('expression@1.5x.jpg');
+  $product_node = Node::create([
+    'type' => 'product',
+    'langcode' => 'en',
+    'title' => 'Pencil by 53 Studios',
+    'body' => [
+      'value' => '<h2>FREEDOM&nbsp;OF EXPRESSION.</h2>
+
+<p>Great tools inspire great ideas. Pencil&nbsp;by&nbsp;FiftyThree is the most natural and expressive way to create on iPad and iPhone. Advanced technology meets beautiful design to keep you in the flow, without needing to switch tools. With Surface Pressure, Erase, Blend, and adaptive Palm Rejection, Pencil puts creative possibility in&nbsp;your&nbsp;hands.</p>',
+      'format' => 'basic_html',
+    ],
+    'field_product_photo' => [
+      'target_id' => $product_image->id(),
+      'alt' => 'pencil',
+      'title' => 'pencil',
+    ],
+    'uid' => 1,
+    'status' => 1,
+  ]);
+  $product_node->save();
+  $product_comment = Comment::create([
+    // Commented entity type.
+    'entity_type' => 'node',
+    'field_name' => 'field_product_feedback',
+    'entity_id' => $product_node->id(),
+    // Comment entity itself.
+    'comment_type' => 'bakeoff',
+    'uid' => 1,
+    'name' => User::load(1)->getAccountName(),
+    'langcode' => 'en',
+    'subject' => 'Pretty cool',
+    'comment_body' => [
+      'value' => 'Viral organic ugh pickled squid authentic. Try-hard selfies cornhole hammock flannel, dreamcatcher chillwave yuccie before they sold out. Disrupt mlkshk food truck four loko kinfolk. Scenester VHS pinterest cardigan meh. Selvage lumbersexual pop-up, food truck affogato four loko fanny pack four dollar toast leggings drinking vinegar gastropub master cleanse +1 skateboard. Kale chips beard thundercats austin. Health goth single-origin coffee kale chips, next level sartorial scenester jean shorts vice four loko squid ugh tattooed pork belly.',
+      'format' => 'basic_html',
+    ],
+    'field_rate_this' => 2,
+    'status' => 1,
+  ]);
+  $product_comment->save();
+
+  // Default content: article with comment.
+  $article_node = Node::create([
+    'type' => 'article',
+    'langcode' => 'en',
+    'title' => 'Test article',
+    'body' => [
+      'value' => '<p>Viral organic ugh pickled squid authentic. Try-hard selfies cornhole hammock flannel, dreamcatcher chillwave yuccie before they sold out. Disrupt mlkshk food truck four loko kinfolk. Scenester VHS pinterest cardigan meh. Selvage lumbersexual pop-up, food truck affogato four loko fanny pack four dollar toast leggings drinking vinegar gastropub master cleanse +1 skateboard. Kale chips beard thundercats austin. Health goth single-origin coffee kale chips, next level sartorial scenester jean shorts vice four loko squid ugh tattooed pork belly.</p>
+
+<p>Viral organic ugh pickled squid authentic. Try-hard selfies cornhole hammock flannel, dreamcatcher chillwave yuccie before they sold out. Disrupt mlkshk food truck four loko kinfolk. Scenester VHS pinterest cardigan meh. Selvage lumbersexual pop-up, food truck affogato four loko fanny pack four dollar toast leggings drinking vinegar gastropub master cleanse +1 skateboard. Kale chips beard thundercats austin. Health goth single-origin coffee kale chips, next level sartorial scenester jean shorts vice four loko squid ugh tattooed pork belly.</p>',
+      'format' => 'basic_html',
+    ],
+    'uid' => 1,
+    'status' => 1,
+    'promote' => 1,
+  ]);
+  $article_node->save();
+  $article_comment = Comment::create([
+    // Commented entity type.
+    'entity_type' => 'node',
+    'field_name' => 'comment',
+    'entity_id' => $article_node->id(),
+    // Comment entity itself.
+    'comment_type' => 'comment',
+    'uid' => 1,
+    'name' => User::load(1)->getAccountName(),
+    'langcode' => 'en',
+    'subject' => 'My feedback',
+    'comment_body' => [
+      'value' => '<p>Viral organic ugh pickled squid authentic. Try-hard selfies cornhole hammock flannel, dreamcatcher chillwave yuccie before they sold out. Disrupt mlkshk food truck four loko kinfolk. Scenester VHS pinterest cardigan meh. Selvage lumbersexual pop-up, food truck affogato four loko fanny pack four dollar toast leggings drinking vinegar gastropub master cleanse +1 skateboard. Kale chips beard thundercats austin. Health goth single-origin coffee kale chips, next level sartorial scenester jean shorts vice four loko squid ugh tattooed pork belly.</p>',
+      'format' => 'basic_html',
+    ],
+    'status' => 1,
+  ]);
+  $article_comment->save();
+}

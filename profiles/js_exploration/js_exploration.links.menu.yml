@@ -1,0 +1,14 @@
+js_exploration.front_page:
+  title: 'Home'
+  route_name: '<front>'
+  menu_name: main
+js_exploration.product:
+  title: 'Product'
+  route_name: 'entity.node.canonical'
+  route_parameters: { 'node': '1' }
+  menu_name: main
+js_exploration.article:
+  title: 'Article'
+  route_name: 'entity.node.canonical'
+  route_parameters: { 'node': '2' }
+  menu_name: main
