@@ -18,6 +18,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Base for controller for comment forms.
@@ -255,6 +257,22 @@ class CommentForm extends ContentEntityForm {
     );
 
     return $element;
+  }
+
+  // @see comment_ajax_form_comment_comment_form_alter()
+  public function ajaxPreview(array &$form, FormStateInterface $form_state) {
+    // Simulate slowness.
+    // sleep(5);
+
+    // Render a preview of the comment.
+    $comment = $this->entity;
+    $comment->in_preview = TRUE;
+    $output = comment_view($comment);
+
+    // Return the AJAX response, with two commands.
+    $response = new AjaxResponse();
+    $response->addCommand(new HtmlCommand('#comment-ajax-preview-placeholder', $output));
+    return $response;
   }
 
   /**

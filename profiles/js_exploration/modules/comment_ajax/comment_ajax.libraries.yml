@@ -1,0 +1,7 @@
+preview:
+  version: VERSION
+  js:
+    preview.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

@@ -1,0 +1,8 @@
+name: Comment AJAX
+type: module
+description: 'Better commenting experience by using the AJAX system'
+package: JS Exploration
+version: VERSION
+core: 8.x
+dependencies:
+  - comment
