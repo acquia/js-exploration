@@ -10,8 +10,23 @@ function comment_ajax_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\
   $form['#attached']['library'][] = 'comment_ajax/preview';
 
   $form['actions']['preview']['#ajax'] = [
-    // @see \Drupal\comment\CommentForm::ajaxPreview()
-    'callback' => '::ajaxPreview',
+    'callback' => 'comment_ajax_preview',
   ];
   $form['#prefix'] = '<div id="comment-ajax-preview-placeholder"></div>';
+}
+
+function comment_ajax_preview($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Simulate slowness.
+  // sleep(5);
+
+  // Render a preview of the comment.
+  $form_object = $form_state->getFormObject();
+  $comment = $form_object->getEntity();
+  $comment->in_preview = TRUE;
+  $output = comment_view($comment);
+
+  // Return the AJAX response, with two commands.
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#comment-ajax-preview-placeholder', $output));
+  return $response;
 }
