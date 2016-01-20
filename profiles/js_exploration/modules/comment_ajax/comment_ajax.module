@@ -7,11 +7,22 @@ use Drupal\Core\Ajax\HtmlCommand;
  * Implements hook_form_ID_alter() for the form with ID 'comment_comment_form'.
  */
 function comment_ajax_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  $form['#attached']['library'][] = 'comment_ajax/preview';
+  $form['actions']['comment_ajax__edit'] = [
+    '#type' => 'submit',
+    '#value' => t('Edit'),
+    '#weight' => 100,
+    '#attributes' => [
+      'class' => ['js-show'],
+      // @todo js-show defaults to "display: block;", the Baked theme should be updated to support this.
+      'style' => ['display: inline-block;'],
+    ],
+  ];
 
+  // Make the "Preview" button AJAX-enabled.
   $form['actions']['preview']['#ajax'] = [
     'callback' => 'comment_ajax_preview',
   ];
+  $form['actions']['preview']['#attached']['library'][] = 'comment_ajax/preview';
   $form['#prefix'] = '<div id="comment-ajax-preview-placeholder"></div>';
 }
 
@@ -25,7 +36,6 @@ function comment_ajax_preview($form, \Drupal\Core\Form\FormStateInterface $form_
   $comment->in_preview = TRUE;
   $output = comment_view($comment);
 
-  // Return the AJAX response, with two commands.
   $response = new AjaxResponse();
   $response->addCommand(new HtmlCommand('#comment-ajax-preview-placeholder', $output));
   return $response;
