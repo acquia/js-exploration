@@ -46,9 +46,8 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-  links:
-    weight: 100
 hidden:
   field_image: true
   field_tags: true
   langcode: true
+  links: true
