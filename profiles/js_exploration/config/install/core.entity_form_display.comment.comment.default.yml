@@ -21,18 +21,7 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-  subject:
-    type: string_textfield
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  translation:
-    weight: 10
-hidden: {  }
+hidden:
+  langcode: true
+  subject: true
+  translation: true
