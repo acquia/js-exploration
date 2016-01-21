@@ -1,7 +1,8 @@
-preview:
+form:
   version: VERSION
   js:
-    preview.js: {}
+    form.js: {}
   dependencies:
     - core/jquery
     - core/drupal
+    - core/ajax

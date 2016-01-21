@@ -28,13 +28,18 @@ function comment_ajax_form_comment_comment_form_alter(&$form, FormStateInterface
   $form['actions']['preview']['#ajax'] = [
     'callback' => 'comment_ajax_preview',
   ];
-  $form['actions']['preview']['#attached']['library'][] = 'comment_ajax/preview';
+
+  // Create the placeholder for a comment preview: at the bottom of the form,
+  // just before the form actions.
   $form['actions']['#prefix'] = '<div id="comment-ajax-preview-placeholder"></div>';
 
   // Make the "Save" button AJAX-enabled.
   $form['actions']['submit']['#ajax'] = [
     'callback' => 'comment_ajax_save',
   ];
+
+  // Attach the corresponding JavaScript library.
+  $form['actions']['preview']['#attached']['library'][] = 'comment_ajax/form';
 }
 
 function comment_ajax_preview($form, FormStateInterface $form_state) {

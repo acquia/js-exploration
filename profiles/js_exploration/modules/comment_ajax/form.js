@@ -5,7 +5,7 @@
   var actionsSelector = '[data-drupal-selector="edit-actions"]';
   var previewPlaceholderSelector = '#comment-ajax-preview-placeholder';
 
-  Drupal.behaviors.commentAjaxPreview = {
+  Drupal.behaviors.commentAjaxForm = {
     attach: function (context) {
       var $commentForm = $(context).find('[data-drupal-selector="comment-form"]');
       var $previewButton = $commentForm.find('[data-drupal-selector="edit-preview"]');
@@ -37,7 +37,7 @@
       // 1. Revert everything startPreview() did.
       // 2. Also remove the preview.
       // 3. Prevent the default action: we already have the form available.
-      function endPreview () {
+      function endPreview() {
         // Step 1.
         $commentFormItems.show();
         $commentForm.find('#comment-ajax-status').remove();
