@@ -115,13 +115,3 @@ input.text-full {
   margin-top: 2em;
   margin-bottom: 2em;
 }
-
-/* hack to get around hard-coded h2 */
-.comment-form__title {
-  color: transparent;
-}
-.comment-form__title:before {
-  content: "Product Feedback";
-  color: #333;
-}
-
