@@ -1,12 +1,18 @@
 <?php
 
+use Drupal\comment\Entity\Comment;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\BaseCommand;
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_ID_alter() for the form with ID 'comment_comment_form'.
  */
-function comment_ajax_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function comment_ajax_form_comment_comment_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form['actions']['comment_ajax__edit'] = [
     '#type' => 'submit',
     '#value' => t('Edit'),
@@ -23,10 +29,15 @@ function comment_ajax_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\
     'callback' => 'comment_ajax_preview',
   ];
   $form['actions']['preview']['#attached']['library'][] = 'comment_ajax/preview';
-  $form['#prefix'] = '<div id="comment-ajax-preview-placeholder"></div>';
+  $form['actions']['#prefix'] = '<div id="comment-ajax-preview-placeholder"></div>';
+
+  // Make the "Save" button AJAX-enabled.
+  $form['actions']['submit']['#ajax'] = [
+    'callback' => 'comment_ajax_save',
+  ];
 }
 
-function comment_ajax_preview($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+function comment_ajax_preview($form, FormStateInterface $form_state) {
   // Simulate slowness.
   // sleep(5);
 
@@ -38,5 +49,32 @@ function comment_ajax_preview($form, \Drupal\Core\Form\FormStateInterface $form_
 
   $response = new AjaxResponse();
   $response->addCommand(new HtmlCommand('#comment-ajax-preview-placeholder', $output));
+  return $response;
+}
+
+function comment_ajax_save($form, FormStateInterface $form_state) {
+  // Simulate slowness.
+  // sleep(5);
+
+  // Execute the original CommentForm::save() logic.
+  $form_object = $form_state->getFormObject();
+  $form_object->save($form, $form_state);
+
+  // Retrieve the redirect that CommentForm::save() performed, if any.
+  $form_state->disableRedirect(FALSE);
+  $redirect = $form_state->getRedirect();
+
+  // Render the saved comment.
+  $output = comment_view(Comment::load($form_object->getEntity()->id()));
+
+  $response = new AjaxResponse();
+  $response->addCommand(new ReplaceCommand('[data-drupal-selector="comment-form"]', $output));
+  if ($redirect instanceof Url) {
+    // Ensure the URL points to the anchor for the comment, just like it would
+    // if this comment weren't posted via AJAX. This ensures the back button
+    // behaves as expected.
+    $response->addCommand(new BaseCommand('commentAjaxUpdateUrl', $redirect->toString(TRUE)->getGeneratedUrl()));
+  }
+
   return $response;
 }

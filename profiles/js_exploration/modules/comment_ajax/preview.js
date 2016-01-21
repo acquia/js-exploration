@@ -10,6 +10,7 @@
       var $commentForm = $(context).find('[data-drupal-selector="comment-form"]');
       var $previewButton = $commentForm.find('[data-drupal-selector="edit-preview"]');
       var $editButton = $commentForm.find('[data-drupal-selector="edit-comment-ajax-edit"]');
+      var $saveButton = $commentForm.find('[data-drupal-selector="edit-submit"]');
       var $commentFormItems = $commentForm.children().not(actionsSelector).not(previewPlaceholderSelector);
       var statusText = Drupal.t('Previewing');
 
@@ -47,10 +48,23 @@
         event.preventDefault();
       }
 
+      // When the "Save" button is triggered, change the button label.
+      // Note the lack of `preventDefault()`: we let the AJAX system continue to
+      // do its thing, which means the preview will be inserted in the preview
+      // placeholder.
+      function startSave() {
+        $saveButton.attr('value', Drupal.t('Saving…'));
+      }
+
       // Bind event handlers.
       $previewButton.on('mousedown', startPreview);
       $editButton.on('mousedown', endPreview);
+      $saveButton.on('mousedown', startSave);
     }
+  };
+
+  Drupal.AjaxCommands.prototype.commentAjaxUpdateUrl = function (ajax, response, status) {
+    window.history.replaceState({}, '', response.data);
   };
 
 })(jQuery, Drupal);
