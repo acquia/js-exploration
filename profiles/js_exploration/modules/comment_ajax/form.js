@@ -5,6 +5,19 @@
   var actionsSelector = '[data-drupal-selector="edit-actions"]';
   var previewPlaceholderSelector = '#comment-ajax-preview-placeholder';
 
+  /**
+   * Theme function to render the "editing status".
+   *
+   * @param {string} status
+   *   The (translated) status.
+   *
+   * @return {string}
+   *   The corresponding HTML.
+   */
+  Drupal.theme.commentAjaxEditingStatus = function (status) {
+    return '<div class="comment-editing-status">' + status + '</div>';
+  };
+
   Drupal.behaviors.commentAjaxForm = {
     attach: function (context) {
       var $commentForm = $(context).find('[data-drupal-selector="comment-form"]');
@@ -12,7 +25,6 @@
       var $editButton = $commentForm.find('[data-drupal-selector="edit-comment-ajax-edit"]');
       var $saveButton = $commentForm.find('[data-drupal-selector="edit-submit"]');
       var $commentFormItems = $commentForm.children().not(actionsSelector).not(previewPlaceholderSelector);
-      var statusText = Drupal.t('Previewing');
 
       // Hide the "Edit" button initially.
       $editButton.hide();
@@ -27,7 +39,8 @@
       // placeholder.
       function startPreview() {
         $commentFormItems.hide();
-        $commentForm.find(actionsSelector).prepend('<div id="comment-ajax-status" style="display: inline-block; margin-right: 1em;">' + statusText + '</div>');
+        $commentForm.find(actionsSelector)
+          .prepend(Drupal.theme('commentAjaxEditingStatus', Drupal.t('Previewing')));
         $previewButton.hide();
         $editButton.show();
       }
@@ -40,7 +53,7 @@
       function endPreview() {
         // Step 1.
         $commentFormItems.show();
-        $commentForm.find('#comment-ajax-status').remove();
+        $commentForm.find('.comment-editing-status').remove();
         $editButton.hide();
         $previewButton.show();
         // Steps 2-3.
