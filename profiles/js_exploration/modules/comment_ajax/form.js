@@ -43,6 +43,10 @@
           .prepend(Drupal.theme('commentAjaxEditingStatus', Drupal.t('Previewing')));
         $previewButton.hide();
         $editButton.show();
+        // @todo When none of the comment form's input fields have been modified
+        // by the user since the last time it was previewed, there's no need to
+        // send the AJAX request that will render the preview; we can reuse it
+        // immediately.
       }
 
       // When the "Edit" button is triggered (which can only happen after the
