@@ -93,3 +93,8 @@ footer.comment__meta p {
     margin-top: 0;
 }
 
+
+.comment-editing-status {
+  display: inline-block;
+  margin-right: 1em;
+}
