@@ -6,3 +6,13 @@ form:
     - core/jquery
     - core/drupal
     - core/ajax
+
+delete:
+  version: VERSION
+  js:
+    delete.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/ajax
+    - core/drupal.dialog

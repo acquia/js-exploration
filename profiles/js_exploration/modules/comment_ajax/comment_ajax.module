@@ -1,11 +1,15 @@
 <?php
 
+use Drupal\comment\CommentInterface;
 use Drupal\comment\Entity\Comment;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\BaseCommand;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
@@ -82,4 +86,23 @@ function comment_ajax_save($form, FormStateInterface $form_state) {
   }
 
   return $response;
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function comment_ajax_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity instanceof CommentInterface) {
+    // Only modify the markup and only attach the asset library if the current
+    // user can in fact delete a comment. Ensure cacheability is updated
+    // accordingly.
+    $comment_delete_access = $entity->access('delete', NULL, TRUE);
+    CacheableMetadata::createFromRenderArray($build)
+      ->addCacheableDependency($comment_delete_access)
+      ->applyTo($build);
+    if ($comment_delete_access->isAllowed()) {
+      $build['#attributes']['data-comment-ajax'] = $entity->id();
+      $build['#attached']['library'][] = 'comment_ajax/delete';
+    }
+  }
 }

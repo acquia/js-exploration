@@ -1,0 +1,9 @@
+comment_ajax.delete:
+  path: '/comment_ajax/delete/{comment}'
+  defaults:
+    _controller: '\Drupal\comment_ajax\CommentAjaxController::delete'
+  options:
+    _theme: ajax_base_page
+  requirements:
+    _entity_access: 'comment.delete'
+    comment: \d+
