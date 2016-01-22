@@ -1,0 +1,7 @@
+The assumptions made in this implementation that may make it theme- or
+server-side code dependent:
+
+1. form.js: The "data-drupal-selector" selectors in form.js: these remain the same as long as the form actions in the form definition in PHP are not changed.
+2. EVERYWHERE: No status messages, because we wouldn't know where to render them or when to remove them. Also, they're simply not necessary: neither when posting a new comment (the comment shows up upon success) nor when deleting a comment (the comment permanently disappears upon success).
+3. EVERYWHERE: fairly poor network/server error handling for AJAX responses
+4. NOT IMPLEMENTED: starting the editing of a comment in-place, because editing comments is usually done by administrators, and showing that UI here would be terrible.
