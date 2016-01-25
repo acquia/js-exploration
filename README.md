@@ -15,7 +15,7 @@ The above means participants in this project can just rebase on top of this bran
 # Practical
 
 - Every participant works in their own branch, frequently rebasing on top of `js-exploration-base`.
-- Every participant adds a Drupal module to implement their PoC to `/modules/<a module name>`. For an example, see the PoC that implements this using Drupal’s “AJAX Framework”: [TBD].
+- Every participant adds a Drupal module to implement their PoC to `/modules/<a module name>`. For an example, see the PoC that implements this using Drupal’s “AJAX Framework”: https://github.com/acquia/js-exploration/compare/js-exploration-base...ajax, and another one that uses Backbone: https://github.com/acquia/js-exploration/compare/js-exploration-base...backbone.
 - Running into a Drupal problem? Create an issue in this GitHub project. We’ll fix it for you.
 
 # Getting started
