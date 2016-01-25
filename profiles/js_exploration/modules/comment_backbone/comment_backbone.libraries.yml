@@ -1,0 +1,13 @@
+view:
+  version: VERSION
+  js:
+    view.js: {}
+  dependencies:
+    - core/backbone
+
+form:
+  version: VERSION
+  js:
+    form.js: {}
+  dependencies:
+    - core/backbone

@@ -1,0 +1,23 @@
+<?php
+
+use Drupal\comment\CommentInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_ID_alter() for the form with ID 'comment_comment_form'.
+ */
+function comment_backbone_form_comment_comment_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#attached']['library'][] = 'comment_backbone/form';
+}
+
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function comment_backbone_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity instanceof CommentInterface) {
+    $build['#attached']['library'][] = 'comment_backbone/view';
+  }
+}

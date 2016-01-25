@@ -1,0 +1,8 @@
+name: Comment Backbone
+type: module
+description: 'Better commenting experience by moving some logic to the client-side, using the Backbone.js library.'
+package: JS Exploration
+version: VERSION
+core: 8.x
+dependencies:
+  - comment
