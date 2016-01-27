@@ -15,3 +15,41 @@ function baked_preprocess_node(&$variables) {
     unset($variables['content']['links']['comment']['#links']['comment-add']);
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for comment.html.twig.
+ */
+function baked_preprocess_comment(&$variables) {
+  // The following is adapted from http://php.net/manual/en/function.time.php#89415
+  // Get created timestamp and current timestamp.
+  $time_created = $variables['comment']->getCreatedTime();
+  $time_now = time();
+
+  // Set up periods of time for strings.
+  $periods = array('second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade');
+  $lengths = array('60', '60', '24', '7', '4.35', '12', '10');
+
+  // Check if time is in the future or in the past.
+  if ($time_now > $time_created) {
+    $difference = $time_now - $time_created;
+    $tense = 'ago';
+  }
+  else {
+    $difference = $time_created - $time_now;
+    $tense = 'from now';
+  }
+
+  // Round time differences to periods.
+  for ($i = 0; $difference >= $lengths[$i] && $i < count($lengths) - 1; $i++) {
+    $difference /= $lengths[$i];
+  }
+  $difference = round($difference);
+
+  // Pluralize if there is more than one period.
+  if ($difference != 1) {
+    $periods[$i] .= 's';
+  }
+
+  // Change {{ created }} to created time ago.
+  $variables['created'] = "$difference $periods[$i] {$tense}";
+}
