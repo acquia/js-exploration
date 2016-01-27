@@ -1,0 +1,13 @@
++view:
++  version: VERSION
++  js:
++    view.ts: {}
++  dependencies:
++    - core/angular2
++
++form:
++  version: VERSION
++  js:
++    form.ts: {}
++  dependencies:
++    - core/angular2
