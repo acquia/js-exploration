@@ -1,13 +1,62 @@
+angular2:
+  remote: https://github.com/angular/angular
+  version: "2.0.0-beta.1"
+  license:
+    name: MIT
+    url: https://github.com/angular/angular/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    vendor/angular2.0.0-beta.1.js: {}
+
+twig:
+  remote: https://github.com/justjohn/twig.js
+  version: "0.8.7"
+  license:
+    name: 'BSD 2-clause'
+    url: https://github.com/angular/angular/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    vendor/twig-0.8.7.js: {}
+
+angular2-typescript:
+  version: VERSION
+  js:
+    vendor/config.js: {}
+  dependencies:
+    - comment_angular2/angular2
+
+twig-drupal:
+  version: VERSION
+  js:
+    vendor/twig-custom.js: {}
+  dependencies:
+    - comment_angular2/twig
+
+angular2-with-twig:
+  version: VERSION
+  js:
+    https://code.angularjs.org/2.0.0-beta.1/angular2-polyfills.js: { type: external }
+    https://code.angularjs.org/tools/system.js: { type: external }
+    https://code.angularjs.org/tools/typescript.js: { type: external }
+    https://code.angularjs.org/2.0.0-beta.1/Rx.js: { type: external }
+    https://code.angularjs.org/2.0.0-beta.1/http.min.js: { type: external }
+  dependencies:
+    - comment_angular2/twig-drupal
+    - comment_angular2/angular2-typescript
+  # For now, all of this needs to be loaded from the header (<head>) and should
+  # therefore block the rest of the page.
+  header: true
+
 view:
   version: VERSION
   js:
     view.ts: {}
   dependencies:
-    - core/angular2
+    - comment_angular2/angular2-with-twig
 
 form:
   version: VERSION
   js:
     form.ts: {}
   dependencies:
-    - core/angular2
+    - comment_angular2/angular2-with-twig

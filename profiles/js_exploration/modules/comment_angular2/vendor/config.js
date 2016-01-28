@@ -7,7 +7,7 @@ System.config({
   },
   //map tells the System loader where to look for things
   map: {
-    app: "/profiles/js_exploration/themes/baked/modules/comment_angular2"
+    app: "/profiles/js_exploration/modules/comment_angular2"
   },
   //packages defines our app package
   packages: {
