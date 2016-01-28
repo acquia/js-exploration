@@ -1,4 +1,4 @@
-angular2:
+angular2-with-twig:
   remote: https://github.com/angular/angular
   version: "2.0.0-beta.1"
   license:
@@ -6,7 +6,20 @@ angular2:
     url: https://github.com/angular/angular/blob/master/LICENSE
     gpl-compatible: true
   js:
+    https://code.angularjs.org/2.0.0-beta.1/angular2-polyfills.js: { type: external }
+    https://code.angularjs.org/tools/system.js: { type: external }
+    https://code.angularjs.org/tools/typescript.js: { type: external }
+    # Not loaded from CDN because customized.
+    vendor/config.js: {}
+    https://code.angularjs.org/2.0.0-beta.1/Rx.js: { type: external }
+    # Not loaded from CDN because customized.
     vendor/angular2.0.0-beta.1.js: {}
+    https://code.angularjs.org/2.0.0-beta.1/http.min.js: { type: external }
+  dependencies:
+    - comment_angular2/twig-drupal
+  # For now, all of this needs to be loaded from the header (<head>) and should
+  # therefore block the rest of the page.
+  header: true
 
 twig:
   remote: https://github.com/justjohn/twig.js
@@ -16,14 +29,8 @@ twig:
     url: https://github.com/angular/angular/blob/master/LICENSE
     gpl-compatible: true
   js:
+    # Not loaded from CDN because customized.
     vendor/twig-0.8.7.js: {}
-
-angular2-typescript:
-  version: VERSION
-  js:
-    vendor/config.js: {}
-  dependencies:
-    - comment_angular2/angular2
 
 twig-drupal:
   version: VERSION
@@ -31,21 +38,6 @@ twig-drupal:
     vendor/twig-custom.js: {}
   dependencies:
     - comment_angular2/twig
-
-angular2-with-twig:
-  version: VERSION
-  js:
-    https://code.angularjs.org/2.0.0-beta.1/angular2-polyfills.js: { type: external }
-    https://code.angularjs.org/tools/system.js: { type: external }
-    https://code.angularjs.org/tools/typescript.js: { type: external }
-    https://code.angularjs.org/2.0.0-beta.1/Rx.js: { type: external }
-    https://code.angularjs.org/2.0.0-beta.1/http.min.js: { type: external }
-  dependencies:
-    - comment_angular2/twig-drupal
-    - comment_angular2/angular2-typescript
-  # For now, all of this needs to be loaded from the header (<head>) and should
-  # therefore block the rest of the page.
-  header: true
 
 view:
   version: VERSION
