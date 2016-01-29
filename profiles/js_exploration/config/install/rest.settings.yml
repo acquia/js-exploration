@@ -1,0 +1,32 @@
+# Enable all methods on comments. Provide both JSON and HAL+JSON. Always require
+# cookie authentication.
+# @todo Figure out how to support anonymous users without hardcoding basic auth credentials?
+resources:
+  entity:comment:
+    GET:
+      supported_formats:
+        - json
+        - hal_json
+      supported_auth:
+        - cookie
+    POST:
+      supported_formats:
+        - json
+        - hal_json
+      supported_auth:
+        - cookie
+    PATCH:
+      supported_formats:
+        - json
+        - hal_json
+      supported_auth:
+        - cookie
+    DELETE:
+      supported_formats:
+        - json
+        - hal_json
+      supported_auth:
+        - cookie
+
+# Use the site's domain.
+link_domain: ~
