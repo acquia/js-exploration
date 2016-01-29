@@ -13,8 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
  *       initial development phase.
  */
 function comment_angular2_page_attachments(array &$page) {
-  $page['#attached']['library'][] = 'comment_angular2/form';
-  $page['#attached']['library'][] = 'comment_angular2/view';
+  $page['#attached']['library'][] = 'comment_angular2/angular2-with-twig';
 }
 
 /**
