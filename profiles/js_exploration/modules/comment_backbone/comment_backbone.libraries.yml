@@ -3,6 +3,8 @@ view:
   js:
     view.js: {}
   dependencies:
+    - core/drupal
+    - core/jquery
     - core/backbone
 
 form:
