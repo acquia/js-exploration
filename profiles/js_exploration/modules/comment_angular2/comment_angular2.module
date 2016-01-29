@@ -6,6 +6,18 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_page_attachments().
+ *
+ * @todo Remove this hook implementation. Adds the comment_angular2/form and
+ *       comment_angular2/view asset libraries to *every* page while in the
+ *       initial development phase.
+ */
+function comment_angular2_page_attachments(array &$page) {
+  $page['#attached']['library'][] = 'comment_angular2/form';
+  $page['#attached']['library'][] = 'comment_angular2/view';
+}
+
+/**
  * Implements hook_form_ID_alter() for the form with ID 'comment_comment_form'.
  */
 function comment_angular2_form_comment_comment_form_alter(&$form, FormStateInterface $form_state, $form_id) {
