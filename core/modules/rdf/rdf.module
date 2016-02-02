@@ -233,8 +233,9 @@ function rdf_comment_storage_load($comments) {
     $created_mapping = rdf_get_mapping('comment', $comment->bundle())
       ->getPreparedFieldMapping('created');
     $comment->rdf_data['date'] = rdf_rdfa_attributes($created_mapping, $comment->get('created')->first()->toArray());
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $comment->getCommentedEntity();
-    $comment->rdf_data['entity_uri'] = $entity->url();
+    $comment->rdf_data['entity_uri'] = $entity->toUrl()->toString(TRUE)->getGeneratedUrl();
     if ($comment->hasParentComment()) {
       $comment->rdf_data['pid_uri'] = $comment->getParentComment()->url();
     }

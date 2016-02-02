@@ -145,7 +145,15 @@ class EntityResource extends ResourceBase {
 
     // Overwrite the received properties.
     $langcode_key = $entity->getEntityType()->getKey('langcode');
+    $bundle_key = $entity->getEntityType()->getKey('bundle');
     foreach ($entity->_restSubmittedFields as $field_name) {
+      // \Drupal\serialization\Normalizer\EntityNormalizer::denormalize() needs
+      // the bundle to be able to denormalize the entity, if the entity type has
+      // a bundle key.
+      if ($bundle_key && $field_name === $bundle_key) {
+        continue;
+      }
+
       $field = $entity->get($field_name);
       // It is not possible to set the language to NULL as it is automatically
       // re-initialized. As it must not be empty, skip it if it is.
