@@ -6,16 +6,16 @@ angular2-with-twig:
     url: https://github.com/angular/angular/blob/master/LICENSE
     gpl-compatible: true
   js:
-    vendor/angular2-polyfills.js: { type: external }
-    vendor/system.js: { type: external }
-    vendor/typescript.js: { type: external }
+    vendor/angular2-polyfills.js: {}
+    vendor/system.js: {}
+    vendor/typescript.js: {}
     # Not loaded from CDN because customized.
     vendor/config.js: {}
     vendor/import.js: {}
-    vendor/Rx.js: { type: external }
+    vendor/Rx.js: {}
     # Not loaded from CDN because customized.
     vendor/angular2.0.0-beta.1.js: {}
-    vendor/http.min.js: { type: external }
+    vendor/http.min.js: {}
   dependencies:
     - comment_angular2/twig-drupal
   # For now, all of this needs to be loaded from the header (<head>) and should

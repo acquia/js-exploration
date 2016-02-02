@@ -1,1 +1,1 @@
-System.import('application').catch(console.error.bind(console));
+System.import('application/app.ts').catch(console.error.bind(console));
