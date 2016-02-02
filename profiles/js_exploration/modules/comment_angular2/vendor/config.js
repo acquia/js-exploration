@@ -1,17 +1,22 @@
 System.config({
+  // set our baseURL reference path
+  baseURL: '/profiles/js_exploration/modules/comment_angular2',
   //use typescript for compilation
   transpiler: 'typescript',
   //typescript compiler options
   typescriptOptions: {
     emitDecoratorMetadata: true
   },
+  
+  defaultJSExtensions: false,
+
   //map tells the System loader where to look for things
   map: {
-    app: "/profiles/js_exploration/modules/comment_angular2"
+    'angular2/*': 'angular2/*.ts'
   },
-  //packages defines our app package
+  // packages defines our app package
   packages: {
-    app: {
+    'application': {
       main: 'app.ts',
       defaultExtension: 'ts'
     }

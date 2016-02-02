@@ -1,9 +1,10 @@
-import {bootstrap} from 'angular2/platform/browser';
 import {
 	Component,
 	Pipe,
 	PipeTransform
 } from 'angular2/core';
+import {CommentsList} from './comments-list';
+
 
 @Pipe({
 	name: 't'
@@ -14,21 +15,6 @@ class TwigTranslatePipe implements PipeTransform {
 	}
 }
 
-@Component({
-	selector: 'angular2-comment-list',
-	template: 'list of comments'
-})
-class DrupalCommentList {
-
-}
-
-@Component({
-	selector: 'angular2-comment-form',
-	template: 'angular2-comment-form'
-})
-class DrupalCommentForm {
-
-}
 
 @Component({
 	// selector: 'angular2-comment-field',
@@ -37,10 +23,13 @@ class DrupalCommentForm {
 	templateUrl: '/profiles/js_exploration/themes/baked/templates/field--comment.html.twig',
 	// template: TwigHtml,
 
-	directives: [DrupalCommentList, DrupalCommentForm],
-	pipes: [TwigTranslatePipe]
+	directives: [CommentsList],
+	pipes: [TwigTranslatePipe],
+	host: {
+		'class': 'angular-component'
+	}
 })
-class DrupalCommentField {
+export class FieldComment {
 
 	private comments: string = '<angular2-comment-list></angular2-comment-list>';
 	private label: string = 'Comments';
@@ -67,13 +56,3 @@ class DrupalCommentField {
 	}
 
 }
-
-@Component({
-	selector: 'angular2-comment',
-	template: '<angular2-comment-field></angular2-comment-field>',
-	directives: [DrupalCommentField]
-})
-class DrupalCommentsApp { }
-
-bootstrap(DrupalCommentsApp, [])
-  .catch(err => console.error(err));

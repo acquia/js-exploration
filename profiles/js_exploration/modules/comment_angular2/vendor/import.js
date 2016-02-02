@@ -1,0 +1,1 @@
+System.import('application').catch(console.error.bind(console));

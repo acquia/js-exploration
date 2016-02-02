@@ -20,7 +20,7 @@ function comment_angular2_page_attachments(array &$page) {
  * Implements hook_form_ID_alter() for the form with ID 'comment_comment_form'.
  */
 function comment_angular2_form_comment_comment_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $form['#attached']['library'][] = 'comment_angular2/form';
+  //$form['#attached']['library'][] = 'comment_angular2/form';
 }
 
 
@@ -29,6 +29,6 @@ function comment_angular2_form_comment_comment_form_alter(&$form, FormStateInter
  */
 function comment_angular2_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
   if ($entity instanceof CommentInterface) {
-    $build['#attached']['library'][] = 'comment_angular2/view';
+    //$build['#attached']['library'][] = 'comment_angular2/view';
   }
 }

@@ -1,3 +1,4 @@
+console.log('twig.js loaded');
 
 /**
  * Twig.js 0.8.7

@@ -1,3 +1,5 @@
+console.log('angular2.js loaded');
+
 "format register";
 System.register("angular2/src/facade/lang", [], true, function(require, exports, module) {
   var global = System.global,

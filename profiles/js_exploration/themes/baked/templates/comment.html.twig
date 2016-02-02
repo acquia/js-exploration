@@ -74,7 +74,7 @@
     status != 'published' ? 'comment--' ~ status,
     comment.owner.anonymous ? 'by-anonymous',
     author_id and author_id == commented_entity.getOwnerId() ? 'by-' ~ commented_entity.getEntityTypeId() ~ '-author',
-    'clearfix',
+    'clearfix'
   ]
 %}
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
