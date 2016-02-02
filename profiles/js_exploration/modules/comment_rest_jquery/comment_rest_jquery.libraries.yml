@@ -1,0 +1,7 @@
+demo:
+  version: VERSION
+  js:
+    demo.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

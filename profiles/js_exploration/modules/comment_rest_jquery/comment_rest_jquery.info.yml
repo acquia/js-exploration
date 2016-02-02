@@ -1,0 +1,8 @@
+name: Comment: REST via jQuery demo
+type: module
+description: 'Demonstrates REST requests for Comment entities using jQuery (GET/PATCH/POST/DELETE)'
+package: JS Exploration
+version: VERSION
+core: 8.x
+dependencies:
+  - comment
