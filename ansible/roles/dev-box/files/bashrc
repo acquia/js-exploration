@@ -1,0 +1,34 @@
+# Useful default bashrc
+
+# If not running interactively, skip most
+if [[ -n "$PS1" ]]; then
+
+function formattedGitBranch {
+    _branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    test -n "$_branch" && echo -e "<$_branch> "
+}
+
+function screenTitle {
+  if [[ "$TERM" =~ ^screen ]]; then
+    start_marker='\033k'
+    end_marker='\033\\'
+    comment=''
+    if [[ "$screen_comment" != "" ]]; then
+      comment=" - $screen_comment"
+    fi
+    echo -en  "$start_marker$HOSTNAME:$PWD$comment$end_marker"
+  fi
+}
+
+PS1="\[\$(screenTitle)\]\[$(tput setaf 1)\]\$(formattedGitBranch)\[$(tput bold)\]\[$(tput setaf 4)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 4)\]\h\[$(tput se\
+taf 7)\]:\[$(tput setaf 2)\]\w\[$(tput setaf 7)\]$\[$(tput sgr0)\] ";
+
+eval "`dircolors -b`"
+alias ls='ls --color=auto'
+export EDITOR='emacs'
+PATH=$PATH:~/.composer/vendor/bin
+
+# disable the dreaded flow control chars
+stty -ixon
+
+fi # End of interactive-only section

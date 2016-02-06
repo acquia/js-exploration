@@ -1,0 +1,65 @@
+---
+- name: Default bashrc
+  copy: dest={{ item }}/.bashrc src=bashrc
+  with_items:
+    - /home/vagrant
+    - /root
+
+- name: Percona repo key
+  apt_key: data="{{ lookup('file', 'percona-key.asc') }}" state=present
+  tags: ['now']
+
+- name: PHP PPA key
+  apt_key: data="{{ lookup('file', 'ondrej.asc') }}" state=present
+  tags: ['now']
+
+- name: Percona and PHP 5.6 repos
+  apt_repository: repo={{ item }} update_cache=yes
+  with_items:
+    - "deb http://repo.percona.com/apt trusty main"
+    - "deb-src http://repo.percona.com/apt trusty main"
+    - "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main"
+    - "deb-src http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main"
+
+- name: Core application dependencies
+  apt: pkg={{ item }}
+  with_items:
+    - php5
+    - php5-gd
+    - php5-mysqlnd
+    - apache2
+    - percona-server-server-5.5
+    - python-mysqldb 
+
+- name: Composer
+  shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
+
+- name: Drush
+  shell: composer global require drush/drush
+  become_user: vagrant
+  args:
+    creates: /home/vagrant/.composer/vendor/bin/drush
+
+- name: Apache config
+  copy: src=apache-site.conf dest=/etc/apache2/sites-available/001-js-exploration.conf
+  notify: restart apache
+
+- name: Activate apache site config
+  file: state=link src=../sites-available/001-js-exploration.conf dest=/etc/apache2/sites-enabled/001-js-exploration.conf
+  notify: restart apache
+
+- name: Disable default site config
+  file: state=absent dest=/etc/apache2/sites-enabled/000-default.conf
+  notify: restart apache
+
+- name: Database
+  mysql_db: name=js-exploration state=present
+
+- name: Database user
+  mysql_user: name=js-exploration password=devonly priv=js-exploration.*:ALL state=present
+
+- name: Writable public dir
+  file: state=directory dest=/vagrant/docroot/sites/default/files owner=www-data mode=0775
+
