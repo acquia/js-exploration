@@ -1,0 +1,5 @@
+ember:
+  version: VERSION
+  js:
+    http://localhost:4200/assets/vendor.js: { type: external }
+    http://localhost:4200/assets/drupal-exploration.js: { type: external }

@@ -1,0 +1,5 @@
+<?php
+
+function ember_page_attachments(&$page) {
+    $page['#attached']['library'][] = 'ember/ember';
+}
