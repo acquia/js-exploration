@@ -1,5 +1,33 @@
 <?php
 
+use Drupal\Component\Serialization\Json;
+use Drupal\ember\Utility;
+
 function ember_page_attachments(&$page) {
+    // Ember accepts configuration from the server in the form of a
+    // <meta> tag. This allows a single build to support multiple
+    // configurations. When running a standalone ember-cli development
+    // server, this tags gets built from the results of
+    // config/environment.js, but instead we're letting Drupal manage
+    // the initial page HTML, including this config.
+    $emberENV = [
+        "modulePrefix" => "drupal-exploration",
+        "environment" => "development",
+        "baseURL" => "/",
+        "locationType" => "auto",
+        "APP" => []
+    ];
+
     $page['#attached']['library'][] = 'ember/ember';
+    $page['#attached']['html_head'][] = [
+      [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'drupal-exploration/config/environment',
+          'content' => Utility::encodeURIComponent(Json::encode($emberENV))
+        ]
+      ],
+      'what_is_this_even_for'
+    ];
+
 }

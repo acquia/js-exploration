@@ -3,3 +3,5 @@ ember:
   js:
     http://localhost:4200/assets/vendor.js: { type: external }
     http://localhost:4200/assets/drupal-exploration.js: { type: external }
+  dependencies:
+    - core/jquery
