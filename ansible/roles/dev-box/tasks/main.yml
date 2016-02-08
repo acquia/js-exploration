@@ -58,9 +58,6 @@
 - name: Database user
   mysql_user: name=js_exploration password=devonly priv=js_exploration.*:ALL state=present
 
-- name: Writable public dir
-  file: state=directory dest=/vagrant/drupal/sites/default/files owner=www-data mode=0775
-
 - name: tweak php.ini
   lineinfile: dest=/etc/php5/{{ item }}/php.ini regexp="always_populate_raw_post_data ?=" line="always_populate_raw_post_data = -1"
   with_items:

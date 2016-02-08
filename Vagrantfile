@@ -16,8 +16,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end  
 
   config.vm.network :forwarded_port, guest: 80, host: 8285
+  
+  # establish a private network so that we can use an NFS shared
+  # folder (the default VirtualBox shared folders are slow and
+  # materially impact PHP performance).
+  config.vm.network :private_network, ip: "10.0.10.2"
 
-  config.vm.synced_folder ".", "/vagrant",
-                          group: 'www-data',
-                          mount_options: ["dmode=775,fmode=664"]
+  config.vm.synced_folder ".", "/vagrant", type: 'nfs'
 end
