@@ -59,6 +59,9 @@ dependencies:
   # 3. Extension via fields.
   - flag
 
+  # 4. Ember Intgration
+  - ember
+
 themes:
   - baked
   - bartik
