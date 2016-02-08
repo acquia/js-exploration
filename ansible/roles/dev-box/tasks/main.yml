@@ -7,11 +7,9 @@
 
 - name: Percona repo key
   apt_key: data="{{ lookup('file', 'percona-key.asc') }}" state=present
-  tags: ['now']
 
 - name: PHP PPA key
   apt_key: data="{{ lookup('file', 'ondrej.asc') }}" state=present
-  tags: ['now']
 
 - name: Percona and PHP 5.6 repos
   apt_repository: repo={{ item }} update_cache=yes
@@ -55,11 +53,21 @@
   notify: restart apache
 
 - name: Database
-  mysql_db: name=js-exploration state=present
+  mysql_db: name=js_exploration state=present
 
 - name: Database user
-  mysql_user: name=js-exploration password=devonly priv=js-exploration.*:ALL state=present
+  mysql_user: name=js_exploration password=devonly priv=js_exploration.*:ALL state=present
 
 - name: Writable public dir
   file: state=directory dest=/vagrant/drupal/sites/default/files owner=www-data mode=0775
 
+- name: tweak php.ini
+  lineinfile: dest=/etc/php5/{{ item }}/php.ini regexp="always_populate_raw_post_data ?=" line="always_populate_raw_post_data = -1"
+  with_items:
+    - cli
+    - apache2
+
+- name: Site Install
+  shell: /home/vagrant/.composer/vendor/bin/drush -y site-install --account-name=dev --account-pass=dev --db-url=mysql://js_exploration:devonly@localhost/js_exploration --site-name="Drupal Ember" js_exploration
+  args:
+    chdir: /vagrant/drupal
