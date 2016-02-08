@@ -27,7 +27,7 @@ function ember_page_attachments(&$page) {
           'content' => Utility::encodeURIComponent(Json::encode($emberENV))
         ]
       ],
-      'what_is_this_even_for'
+      'ember_meta_config'
     ];
 
 }
