@@ -61,5 +61,5 @@
   mysql_user: name=js-exploration password=devonly priv=js-exploration.*:ALL state=present
 
 - name: Writable public dir
-  file: state=directory dest=/vagrant/docroot/sites/default/files owner=www-data mode=0775
+  file: state=directory dest=/vagrant/drupal/sites/default/files owner=www-data mode=0775
 
