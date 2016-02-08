@@ -1,0 +1,13 @@
+{{title page.title}}
+
+{{!-- Our component manually inserts server-generated DOM into this element --}}
+<div class="drupal-content"></div>
+
+{{#if showingOverlay}}
+  {{#each page.embeddedComponents as |c|}}
+    {{#ember-wormhole to=c.target}}
+      {{component c.name drupalArgs=c.drupalArgs}}
+    {{/ember-wormhole}}
+  {{/each}}
+  {{yield}}
+{{/if}}

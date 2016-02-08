@@ -1,0 +1,46 @@
+import Ember from 'ember';
+const { $ } = Ember;
+
+
+export default Ember.Component.extend({
+  router: Ember.inject.service('wnyc-routing'),
+
+  didReceiveAttrs() {
+    // If we have a new page model, we want to clear any overlaid
+    // content when we rerender.
+    let page = this.get('page');
+    if (page !== this._lastPage) {
+      this.set('showingOverlay', false);
+    }
+  },
+
+  didRender() {
+    let page = this.get('page');
+    if (page !== this._lastPage) {
+      this._lastPage = page;
+      let elt = this.$('.drupal-content');
+      elt.empty();
+      this.get('page').appendTo(elt).then(() => {
+        // After the server-rendered page has been inserted, we
+        // re-enable any overlaid content so that it can wormhole
+        // itself into the server-rendered DOM.
+        this.set('showingOverlay', true);
+      });
+    }
+  },
+
+  click(event) {
+    let target = $(event.target).closest('a');
+    if (target.length > 0) {
+      let router = this.get('router');
+      let href = new URL(target.attr('href'), new URL(this.get('page.id'), window.location).toString()).toString();
+      if (href.indexOf(window.location) === 0) {
+        href = href.replace(window.location, '').replace(/^\//, '');
+        let { routeName, params } = router.recognize(href);
+        router.transitionTo(routeName, ...params);
+        event.preventDefault();
+        return false;
+      }
+    }
+  }
+});
