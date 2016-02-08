@@ -1,16 +1,16 @@
-/*jshint node:true*/
+/*jshint node:true */
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  let vendorFiles = {};
+  var vendorFiles = {};
   if (EmberApp.env() !== 'test') {
     // Don't include jquery in our build, because we're running inside
     // Drupal pages and Drupal already includes jQuery.
     vendorFiles['jquery.js'] = null;
   }
   var app = new EmberApp(defaults, {
-    vendorFiles
+    vendorFiles: vendorFiles
   });
 
   // Use `app.import` to add additional libraries to the generated
