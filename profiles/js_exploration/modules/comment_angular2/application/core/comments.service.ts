@@ -12,9 +12,7 @@ this.http=http;
 
 	getComments(nodeID:number) {
 
-		return this.http.get(`http://js-exploration.dd:8083/node/${nodeID}/comments?_format=json`)
-		
-
+		return this.http.get(`http://js-exploration.dd:8083/node/${nodeID}/comments?_format=json`)	
 
 			// .subscribe(result=> {
 			// 	 this.comments = result.json()

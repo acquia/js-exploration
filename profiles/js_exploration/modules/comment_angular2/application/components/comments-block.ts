@@ -1,7 +1,9 @@
+//Need help how the angular-comments-block DOM tag can be placed in the template
+
 var x = document.querySelector('#block-baked-content > article > div.node__content > section')
 x.innerHTML = '<angular-comments-block> angular come on</angular-comments-block>'
 
-console.log(x);
+
 
 import {Component} from 'angular2/core';
 import {CommentItem} from'./comment-item';
@@ -11,14 +13,14 @@ import {FieldComment} from './field-comment';
 import {CommonCommentFields} './common-comment-fields';
 
 @Component({
-	// selector: '#block-baked-content > article > div.node__content > section',
 	selector: 'angular-comments-block',
 	providers: [CommentsService, HTTP_PROVIDERS],
 	directives:[CommentItem],
 	template: `
+	<i>-----Angular Component-------</i>
 	<p>Total Comments so far </p>
 <hr/>
-<div *ngFor="#comment of comments">
+<div>
 <comment-item></comment-item>
 </div>
 <hr/>
@@ -41,15 +43,17 @@ public comments:Object=[]
 
 ngOnInit(){
 	this.getComments();
-//console.log(comments)	
+
 }
 
 getComments(){
+	// hardcoding the node id, will replace it later
+	
 	this._commentsService.getComments(2).subscribe(
 data =>{this.comments = data},
-// the second argument is a function which runs on error
+
 err => console.error(err),
-// the third argument is a function which runs on completion
+
 () => console.log(this.comments)
 		)
 
