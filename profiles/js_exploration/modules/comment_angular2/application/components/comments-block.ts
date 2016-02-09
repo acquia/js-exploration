@@ -18,15 +18,15 @@ import {CommonCommentFields} './common-comment-fields';
 	directives:[CommentItem],
 	template: `
 	<i>-----<u>Angular Component</u>-------</i>
-<hr/>
-<div>
-<pre>{{comments|json}}</pre>
-<comment-item></comment-item>
-</div>
-<hr/>
-<angular2-comment-field></angular2-comment-field>
+	<hr/>
+	<div>
+		<pre>{{comments|json}}</pre>
+		<comment-item></comment-item>
+	</div>
+	<hr/>
+	<angular2-comment-field></angular2-comment-field>
 
-`
+	`
 	,
 	styles: [`
 		section { background: yellow; }
@@ -50,15 +50,8 @@ ngOnInit(){
 getComments(){
 
 	// hardcoding the page node id, will make it dynamic later
-	this._commentsService.getComments(2).subscribe(
-data =>{this.comments = data})
-
-
-}
-
-//		this.comments = _commentsService.getComments(2)
-//console.log(this.comments)
-	
-
+	this._commentsService.getComments(1)
+	.subscribe(data =>{this.comments = data})
+	}
 	
 }
