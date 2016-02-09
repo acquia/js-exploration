@@ -17,10 +17,10 @@ import {CommonCommentFields} './common-comment-fields';
 	providers: [CommentsService, HTTP_PROVIDERS],
 	directives:[CommentItem],
 	template: `
-	<i>-----Angular Component-------</i>
-	<p>Total Comments so far </p>
+	<i>-----<u>Angular Component</u>-------</i>
 <hr/>
 <div>
+<pre>{{comments|json}}</pre>
 <comment-item></comment-item>
 </div>
 <hr/>
@@ -34,7 +34,8 @@ import {CommonCommentFields} './common-comment-fields';
 	directives: [FieldComment, CommentItem]
 })
 export class CommentsBlock  {
-public comments:Object=[]
+	public comments: Object;
+	
 	constructor(_commentsService: CommentsService) {
 
 		this._commentsService = _commentsService
@@ -47,15 +48,11 @@ ngOnInit(){
 }
 
 getComments(){
-	// hardcoding the node id, will replace it later
-	
+
+	// hardcoding the page node id, will make it dynamic later
 	this._commentsService.getComments(2).subscribe(
-data =>{this.comments = data},
+data =>{this.comments = data})
 
-err => console.error(err),
-
-() => console.log(this.comments)
-		)
 
 }
 
