@@ -5,16 +5,14 @@ import {
 } from 'angular2/core';
 import {CommentsList} from './comments-list';
 
-
 @Pipe({
-	name: 't'
+  name: 't'
 })
-class TwigTranslatePipe implements PipeTransform {
-	transform(value: string, args: string[]): any {
-		return value;
-	}
+export class TwigTranslatePipe implements PipeTransform {
+  transform(value: string, args: string[]): any {
+    return drupalTranslations.strings[""][value];
+  }
 }
-
 
 @Component({
 	// selector: 'angular2-comment-field',
@@ -32,7 +30,7 @@ class TwigTranslatePipe implements PipeTransform {
 export class FieldComment {
 
 	private comments: string = '<angular2-comment-list></angular2-comment-list>';
-	private label: string = 'Comments';
+	private label: string = "{{ 'Unlink' | t }}";
 	private title_suffix: string = '(from Angular 2)';
 	private label_hidden: boolean = false;
 	private field_name: string = 'field_name_1';
