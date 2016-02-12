@@ -1,20 +1,20 @@
 
 /**
- * This class provides the default (common) comments fields provided by Drupal.
+ * This class provides the default (common) comments variables provided by Drupal.
  * NOTE: This is extended by other specialized classes.
- * 
+ *
  * //////
- * WARNING: This is a temporary solution untill we found a better way to 
- * get Drupal fields into Angular 2 context!
+ * WARNING: This is a temporary solution untill we find a better way to
+ * get Drupal variables into Angular 2 context!
  * //////
  *
- * 
+ *
  * @see /profiles/js_exploration/themes/baked/templates/comment.html.twig
  */
-export class CommonCommentFields {
+export class BaseComment {
 
 	 ///// Available variables:
-		
+
 	 /**
 		* author: Comment author. Can be a link or plain text.
 		* @type {string}
@@ -91,7 +91,7 @@ export class CommonCommentFields {
 		 *   - preview: When previewing a new or edited comment.
 		 *   The following applies only to viewers who are registered users:
 		 *   - unpublished: An unpublished comment visible only to administrators.
- 		 *   
+ 		 *
 		 * @type {Object}
 		 */
 		protected attributes: any = {
@@ -157,37 +157,37 @@ export class CommonCommentFields {
 		 * @type {string}
 		 */
 		protected comment_parent: string;
-		
+
 		/**
 		 * parent_author: Equivalent to author for the parent comment.
 		 * @type {string}
 		 */
 		protected parent_author: string;
-		
+
 		/**
 		 * parent_created: Equivalent to created for the parent comment.
 		 * @type {string}
 		 */
 		protected parent_created: string;
-		
+
 		/**
 		 * parent_changed: Equivalent to changed for the parent comment.
 		 * @type {string}
 		 */
 		protected parent_changed: string;
-		
+
 		/**
 		 * parent_title: Equivalent to title for the parent comment.
 		 * @type {string}
 		 */
 		protected parent_title: string;
-		
+
 		/**
 		 * parent_permalink: Equivalent to permalink for the parent comment.
 		 * @type {string}
 		 */
 		protected parent_permalink: string;
-		
+
 		/**
 		 * parent: A text string of parent comment submission information created from
 		 * 'parent_author' and 'parent_created' during template_preprocess_comment().
@@ -221,5 +221,5 @@ export class CommonCommentFields {
 			getOwnerId: () => 1,
 			getEntityTypeId: () => 1
 		};
-	
+
 }

@@ -1,8 +1,21 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {CommentsBlock} from './components/comments-block';
+import {CommentSection} from './components/comments-section';
 
-if (window.location.search.indexOf('angular=true')>=0) {
+function boot(){
 	Twig.trace = true;
-	bootstrap(CommentsBlock, [])
-	  .catch(err => console.error(err));
+	bootstrap(CommentSection, [])
+	.catch(err => console.error(err));
+}
+
+// debugging purpose
+
+let search = window.location.search;
+if (search.indexOf('angular=true')>=0) {
+	boot();
+}
+else if (search.indexOf('angular=delay')>=0) {
+	setTimeout(boot, 3000);
+}
+else {
+	// don't bootstrap angular2
 }

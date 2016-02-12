@@ -1,13 +1,14 @@
 System.config({
   // set our baseURL reference path
   baseURL: '/',
+
   //use typescript for compilation
   transpiler: 'typescript',
   //typescript compiler options
   typescriptOptions: {
     emitDecoratorMetadata: true
   },
-  
+
   defaultJSExtensions: false,
 
   //map tells the System loader where to look for things
