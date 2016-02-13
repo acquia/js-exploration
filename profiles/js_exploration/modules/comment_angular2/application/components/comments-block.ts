@@ -1,4 +1,4 @@
-import {Component, Pipe, PipeTransform} from 'angular2/core';
+import {Component, Pipe, PipeTransform, Input} from 'angular2/core';
 import {BaseComment} from '../base/comment';
 import {UserProfile} from './user-profile';
 import {Author} from './author';
@@ -27,6 +27,8 @@ class TwigTranslatePipe implements PipeTransform {
 })
 export class CommentsBlock extends BaseComment {
 
+	@Input() comments;
+
 	constructor() {
 		super();
 
@@ -52,8 +54,10 @@ export class CommentsBlock extends BaseComment {
 			},
 			toString: () => '<angular2-content></angular2-content>'
 		};
+	}
 
-
+	ngAfterViewInit() {
+		console.log(this.comments);
 	}
 
 }

@@ -72,11 +72,20 @@
     'comment',
     'js-comment',
     status != 'published' ? 'comment--' ~ status,
-    comment.owner.anonymous ? 'by-anonymous',
+    comment.owner.anonymous ? 'by-anonymous':'',
     author_id and author_id == commented_entity.getOwnerId() ? 'by-' ~ commented_entity.getEntityTypeId() ~ '-author',
     'clearfix'
   ]
 %}
+
+{# angular2 template #}
+{% verbatim %}
+  <ul>
+    <li *ngFor="#item of comments">{{ item }}</li>
+  </ul>
+{% endverbatim %}
+{# angular2 template #}
+
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
@@ -110,4 +119,5 @@
       <nav>{{ content.links }}</nav>
     {% endif %}
   </div>
+
 </article>

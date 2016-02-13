@@ -15,9 +15,17 @@ export class FormAction {
       ''
     ].join(' ');
 		this.children = `
-<input data-drupal-selector="edit-preview" type="submit" id="edit-preview" name="op" value="Preview" class="button js-form-submit form-submit">
-<input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Save" class="button button--primary js-form-submit form-submit">
+<input (click)="peview()" data-drupal-selector="edit-preview" type="submit" id="edit-preview" name="op" value="Preview" class="button js-form-submit form-submit">
+<input (click)="save()" 	data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Save" class="button button--primary js-form-submit form-submit">
     `;
+	}
+
+	preview() {
+		alert('[Angular2] Preview comment');
+	}
+
+	save() {
+		alert('[Angular2] save comment');
 	}
 
 }

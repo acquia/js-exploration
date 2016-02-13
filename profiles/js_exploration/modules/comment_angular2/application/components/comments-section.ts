@@ -21,8 +21,10 @@ import {FormContainer} from './form-container';
 export class CommentSection {
 
 	constructor() {
+		this.commenProvider = [1,2,3,4];
+
 		this.label = 'Comments (Angular 2)';
-		this.comments = '<angular2-comment></angular2-comment>';
+		this.comments = '<angular2-comment [comments]="commenProvider"></angular2-comment>';
 		this.comment_form = '<angular2-form-container></angular2-form-container>';
 	}
 
