@@ -1,18 +1,9 @@
-import {Component, Pipe, PipeTransform} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {BaseComment} from '../base/comment';
 import {UserProfile} from './user-profile';
 import {Author} from './author';
 import {ContentLinks} from './content-links';
 import {Content} from './content';
-
-@Pipe({
-	name: 't'
-})
-class TwigTranslatePipe implements PipeTransform {
-	transform(value: string, args: string[]): any {
-		return value;
-	}
-}
 
 @Component({
 	selector: 'angular2-comment',
@@ -22,8 +13,7 @@ class TwigTranslatePipe implements PipeTransform {
 		Author,
 		ContentLinks,
 		Content
-	],
-	pipes: [TwigTranslatePipe]
+	]
 })
 export class CommentsBlock extends BaseComment {
 

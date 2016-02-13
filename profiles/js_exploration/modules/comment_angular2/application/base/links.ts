@@ -36,7 +36,7 @@ export class BaseLinks {
 
      // attributes: (optional) HTML attributes for the anchor, or for the <span>
      // tag if no 'href' is supplied.
-     attributs: any;
+     attributes: any;
 
      // link_key: The link CSS class.
      link_key: string

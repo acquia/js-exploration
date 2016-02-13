@@ -1,10 +1,12 @@
 import {Component, ViewChild} from 'angular2/core';
 import {FormAction} from './form-action';
+import {TwigTranslatePipe} from '../pipes/twig-translate';
 
 @Component({
 	selector: 'angular2-form-children',
 	templateUrl: '/profiles/js_exploration/themes/baked/templates/container.html.twig',
-  directives: [FormAction]
+  directives: [FormAction],
+  pipes: [TwigTranslatePipe]
 })
 export class FormChildren {
 
@@ -15,12 +17,12 @@ export class FormChildren {
       '',
       'class="field--type-text-long field--name-comment-body field--widget-text-textarea js-form-wrapper form-wrapper"',
       'data-drupal-selector="edit-comment-body-wrapper"',
-      'id="edit-comment-body-wrapper"'
+      'id="edit-comment-body-wrapper"',
       ''
     ].join(' ');
 		this.children = `
     <div class="js-form-item form-item js-form-type-textarea form-type-textarea js-form-item-comment-body-0-value form-item-comment-body-0-value">
-      <label for="edit-comment-body-0-value" class="js-form-required form-required">Comment</label>
+      <label for="edit-comment-body-0-value" class="js-form-required form-required">{{ 'Comment' | t }}</label>
       <div class="form-textarea-wrapper">
         <textarea #textArea class="js-text-full text-full form-textarea required resize-vertical" data-drupal-selector="edit-comment-body-0-value" id="edit-comment-body-0-value" name="comment_body[0][value]" rows="5" cols="60" placeholder="" aria-required="true" data-editor-active-text-format="basic_html"></textarea>
       </div>

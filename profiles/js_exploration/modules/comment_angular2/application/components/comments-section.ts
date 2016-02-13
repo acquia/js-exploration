@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
+import {TwigTranslatePipe} from '../pipes/twig-translate';
 import {CommentsBlock} from './comments-block';
 import {FormContainer} from './form-container';
 
@@ -15,13 +16,14 @@ import {FormContainer} from './form-container';
 	styles: [`
 		.angular2-comment {background: lightgoldenrodyellow;}
 	`],
+  pipes: [TwigTranslatePipe],
 	// disable shadow dom for styling
 	encapsulation: ViewEncapsulation.None
 })
 export class CommentSection {
 
 	constructor() {
-		this.label = 'Comments (Angular 2)';
+		this.label = "{{ 'comments' | t }}";
 		this.comments = '<angular2-comment></angular2-comment>';
 		this.comment_form = '<angular2-form-container></angular2-form-container>';
 	}

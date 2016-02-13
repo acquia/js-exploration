@@ -1,8 +1,10 @@
 import {Component} from 'angular2/core';
+import {TwigTranslatePipe} from '../pipes/twig-translate';
 
 @Component({
 	selector: 'angular2-form-action',
-	templateUrl: '/profiles/js_exploration/themes/baked/templates/container.html.twig'
+	templateUrl: '/profiles/js_exploration/themes/baked/templates/container.html.twig',
+  pipes: [TwigTranslatePipe]
 })
 export class FormAction {
 
@@ -15,8 +17,8 @@ export class FormAction {
       ''
     ].join(' ');
 		this.children = `
-<input data-drupal-selector="edit-preview" type="submit" id="edit-preview" name="op" value="Preview" class="button js-form-submit form-submit">
-<input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Save" class="button button--primary js-form-submit form-submit">
+<input data-drupal-selector="edit-preview" type="submit" id="edit-preview" name="op" value="{{ 'Preview' | t }}" class="button js-form-submit form-submit">
+<input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="{{ 'Save' | t }}" class="button button--primary js-form-submit form-submit">
     `;
 	}
 

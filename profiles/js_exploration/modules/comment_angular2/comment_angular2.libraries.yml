@@ -16,6 +16,7 @@ angular2-with-twig:
     # Not loaded from CDN because customized.
     vendor/angular2.0.0-beta.1.js: {}
     vendor/http.min.js: {}
+    vendor/translations.js: {}
   dependencies:
     - comment_angular2/twig-drupal
   # For now, all of this needs to be loaded from the header (<head>) and should
