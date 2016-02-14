@@ -292,7 +292,7 @@ class HtmlResponseAttachmentsProcessor implements AttachmentsResponseProcessorIn
     if (isset($placeholders['styles'])) {
       // Optimize CSS if necessary, but only during normal site operation.
       $optimize_css = !defined('MAINTENANCE_MODE') && $this->config->get('css.preprocess');
-      $variables['styles'] = $this->cssCollectionRenderer->render($this->assetResolver->getCssAssets($assets, $optimize_css));
+      $variables['styles'] = $this->cssCollectionRenderer->render($this->assetResolver->getCssAssets($assets, $optimize_css), $this->requestStack->getCurrentRequest());
     }
 
     // Print scripts - if any are present.
@@ -300,8 +300,8 @@ class HtmlResponseAttachmentsProcessor implements AttachmentsResponseProcessorIn
       // Optimize JS if necessary, but only during normal site operation.
       $optimize_js = !defined('MAINTENANCE_MODE') && !\Drupal::state()->get('system.maintenance_mode') && $this->config->get('js.preprocess');
       list($js_assets_header, $js_assets_footer) = $this->assetResolver->getJsAssets($assets, $optimize_js);
-      $variables['scripts'] = $this->jsCollectionRenderer->render($js_assets_header);
-      $variables['scripts_bottom'] = $this->jsCollectionRenderer->render($js_assets_footer);
+      $variables['scripts'] = $this->jsCollectionRenderer->render($js_assets_header, $this->requestStack->getCurrentRequest());
+      $variables['scripts_bottom'] = $this->jsCollectionRenderer->render($js_assets_footer, $this->requestStack->getCurrentRequest());
     }
 
     return $variables;

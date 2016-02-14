@@ -9,6 +9,7 @@ namespace Drupal\Core\Asset;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\State\StateInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Renders JavaScript assets.
@@ -41,7 +42,7 @@ class JsCollectionRenderer implements AssetCollectionRendererInterface {
    * this class to work correctly even if modules have implemented custom
    * logic for grouping and aggregating files.
    */
-  public function render(array $js_assets) {
+  public function render(array $js_assets, Request $request) {
     $elements = array();
 
     // A dummy query-string is added to filenames, to gain control over
@@ -101,6 +102,17 @@ class JsCollectionRenderer implements AssetCollectionRendererInterface {
       }
 
       $elements[] = $element;
+    }
+
+    if ($request->headers->get('X-Drupal-Ember-Request')) {
+      $elements = array(
+        '#type' => 'html_tag',
+        '#tag' => 'script',
+        '#attributes' => array(
+          'type' => 'application/x-drupal-assets',
+        ),
+        '#value' => Json::encode($elements)
+      );
     }
 
     return $elements;

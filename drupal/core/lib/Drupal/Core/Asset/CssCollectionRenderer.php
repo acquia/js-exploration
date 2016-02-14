@@ -9,6 +9,8 @@ namespace Drupal\Core\Asset;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\State\StateInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Renders CSS assets.
@@ -78,7 +80,7 @@ class CssCollectionRenderer implements AssetCollectionRendererInterface {
   /**
    * {@inheritdoc}
    */
-  public function render(array $css_assets) {
+  public function render(array $css_assets, Request $request) {
     $elements = array();
 
     // A dummy query-string is added to filenames, to gain control over
@@ -215,6 +217,17 @@ class CssCollectionRenderer implements AssetCollectionRendererInterface {
         default:
           throw new \Exception('Invalid CSS asset type.');
       }
+    }
+
+    if ($request->headers->get('X-Drupal-Ember-Request')) {
+      $elements = array(
+        '#type' => 'html_tag',
+        '#tag' => 'script',
+        '#attributes' => array(
+          'type' => 'application/x-drupal-assets',
+        ),
+        '#value' => Json::encode($elements)
+      );
     }
 
     return $elements;

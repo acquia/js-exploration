@@ -5,6 +5,7 @@
  */
 
 namespace Drupal\Core\Asset;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Interface defining a service that generates a render array to render assets.
@@ -20,6 +21,6 @@ interface AssetCollectionRendererInterface {
    * @return array
    *   A render array to render the asset collection.
    */
-  public function render(array $assets);
+  public function render(array $assets, Request $request);
 
 }
