@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import DrupalRendered from './drupal-rendered';
 
-export default Ember.Route.extend({
+export default DrupalRendered.extend({
   model() {
-    return this.store.find('drupal-page', '/');
+    // This is just a special case of the "drupal-rendered" route
+    // where upstream_url is the empty string.
+    return this._super({ upstream_url: '' });
   }
 });
