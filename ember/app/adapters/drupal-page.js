@@ -4,6 +4,6 @@ import { urlFromId } from '../models/drupal-page';
 
 export default DS.Adapter.extend({
   findRecord(store, type, id /*, snapshot */) {
-    return fetch(urlFromId(id)).then(response => response.text());
+    return fetch(urlFromId(id), { headers: { 'X-Drupal-Ember-Request': 1 } }).then(response => response.text());
   }
 });

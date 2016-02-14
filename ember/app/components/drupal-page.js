@@ -34,7 +34,9 @@ export default Ember.Component.extend({
   appendPage($elt, page) {
     return new RSVP.Promise(resolve => {
       if (!page.prerendered) {
-        $elt.html(`appended page ${page.get('id')}`);
+        page.get('content').forEach(node => {
+          $elt[0].appendChild(node);
+        });
       }
       resolve();
     });

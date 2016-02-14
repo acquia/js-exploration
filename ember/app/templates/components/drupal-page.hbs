@@ -1,4 +1,6 @@
-{{title page.title}}
+{{#unless page.prerendered}}
+  {{title page.title}}
+{{/unless}}
 
 {{!-- Our component manually inserts server-generated DOM into this element --}}
 <div class="drupal-content"></div>
