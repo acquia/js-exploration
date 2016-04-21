@@ -40,8 +40,8 @@ function ember_page_attachments(&$page) {
         // TODO: load this setting via conventional Drupal configuration.
         //
         // This default configuration allows Ember to control all
-        // transitions except for the admin namespace.
-        "cedeToDrupal" => [ "^\/admin" ],
+        // transitions.
+        "cedeToDrupal" => [],
 
         "modulePrefix" => "drupal-exploration",
         "environment" => "development",
