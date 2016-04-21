@@ -23,4 +23,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "10.0.10.2"
 
   config.vm.synced_folder ".", "/vagrant", type: 'nfs'
+
+  # Drush and composer are both memory hogs that will often simply die
+  # on the default sized VM.
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
 end
