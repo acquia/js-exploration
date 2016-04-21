@@ -3,7 +3,7 @@
  * Attaches behaviors for Drupal's active link marking.
  */
 
-(function (Drupal, drupalSettings) {
+(function (Drupal) {
 
   'use strict';
 
@@ -22,9 +22,9 @@
    * @type {Drupal~behavior}
    */
   Drupal.behaviors.activeLinks = {
-    attach: function (context) {
+    attach: function (context, settings) {
       // Start by finding all potentially active links.
-      var path = drupalSettings.path;
+      var path = settings.path;
       var queryString = JSON.stringify(path.currentQuery);
       var querySelector = path.currentQuery ? "[data-drupal-link-query='" + queryString + "']" : ':not([data-drupal-link-query])';
       var originalSelectors = ['[data-drupal-link-system-path="' + path.currentPath + '"]'];
@@ -65,4 +65,4 @@
     }
   };
 
-})(Drupal, drupalSettings);
+})(Drupal);
