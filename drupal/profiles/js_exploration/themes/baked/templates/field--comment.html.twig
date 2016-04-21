@@ -40,6 +40,9 @@
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
+
+<div data-ember-component="hello-world" data-label={{ label }} ></div>
+
 <section{{ attributes.addClass(classes) }}>
   {% if comments and not label_hidden %}
     {{ title_prefix }}

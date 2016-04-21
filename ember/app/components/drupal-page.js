@@ -28,8 +28,11 @@ export default Ember.Component.extend({
         // After the server-rendered page has been inserted, we
         // re-enable any overlaid content so that it can wormhole
         // itself into the server-rendered DOM.
+        this.set('embeddedComponents', findEmbeddedComponents(page.prerendered ? $(document) : elt));
         this.set('showingOverlay', true);
-        Drupal.attachBehaviors(elt[0], page.get('drupalSettings'));
+        if (typeof Drupal !== 'undefined') {
+          Drupal.attachBehaviors(elt[0], page.get('drupalSettings'));
+        }
       });
     }
   },
@@ -81,5 +84,19 @@ function styleLoaded(element) {
       }
     }, 20);
 
+  });
+}
+
+let counter = 0;
+function findEmbeddedComponents($context) {
+  return Array.from($context.find('[data-ember-component]')).map(elt => {
+    if (elt.getAttribute('id') == null) {
+      elt.setAttribute('id', `embedded-component-marker-${counter++}`);
+    }
+    return {
+      target: elt.getAttribute('id'),
+      name: elt.getAttribute('data-ember-component'),
+      drupalArgs: $(elt).data()
+    };
   });
 }

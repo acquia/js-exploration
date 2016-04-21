@@ -6,7 +6,7 @@
 <div class="drupal-content"></div>
 
 {{#if showingOverlay}}
-  {{#each page.embeddedComponents as |c|}}
+  {{#each embeddedComponents as |c|}}
     {{#ember-wormhole to=c.target}}
       {{component c.name drupalArgs=c.drupalArgs}}
     {{/ember-wormhole}}

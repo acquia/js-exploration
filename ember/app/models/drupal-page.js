@@ -53,11 +53,6 @@ export default DS.Model.extend({
     if (tag) {
       return JSON.parse(tag['#value']);
     }
-  }),
-
-  embeddedComponents: Ember.computed(function() {
-    // TODO
-    return [];
   })
 });
 
