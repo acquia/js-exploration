@@ -16,5 +16,6 @@ This repo contains:
 ## Automatically Launch a New Drupal Instance
 
 1. Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org).
-2. run `vagrant up` in this directory
-3. View your new Drupal server at http://localhost:8285. Username `dev`, password `dev`.
+2. Ensure you are working with the 'ember' branch of the repository.
+3. run `vagrant up` in this directory
+4. View your new Drupal server at http://localhost:8285. Username `dev`, password `dev`.
